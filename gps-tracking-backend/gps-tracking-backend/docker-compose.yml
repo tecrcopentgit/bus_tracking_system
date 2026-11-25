@@ -1,0 +1,49 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: gps
+      POSTGRES_PASSWORD: gps
+      POSTGRES_DB: gps
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gps -d gps"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  mqtt:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1884:1883"
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - mqttdata:/mosquitto/data
+
+  api:
+    build: .
+    ports:
+      - "8001:8000"
+    environment:
+      DATABASE_URL: postgresql+psycopg2://gps:gps@db:5432/gps
+      JWT_SECRET: ${JWT_SECRET:-dev-only-change-me}
+      DEVICE_API_KEY: ${DEVICE_API_KEY:-dev-device-key}
+      MQTT_HOST: mqtt
+      SEED_ON_STARTUP: "true"
+    depends_on:
+      db:
+        condition: service_healthy
+      mqtt:
+        condition: service_started
+
+  simulator:
+    build: .
+    command: ["python", "-m", "simulator.simulator", "--host", "mqtt", "--interval", "2"]
+    depends_on:
+      - mqtt
+      - api
+
+volumes:
+  pgdata:
+  mqttdata:

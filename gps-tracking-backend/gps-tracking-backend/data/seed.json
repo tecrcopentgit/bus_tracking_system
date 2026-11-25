@@ -1,0 +1,117 @@
+{
+  "routes": [
+    {
+      "name": "Route A",
+      "description": "Tambaram - T. Nagar",
+      "stops": [
+        {
+          "name": "Tambaram",
+          "latitude": 12.9249,
+          "longitude": 80.1
+        },
+        {
+          "name": "Chromepet",
+          "latitude": 12.9516,
+          "longitude": 80.1462
+        },
+        {
+          "name": "Pallavaram",
+          "latitude": 12.9675,
+          "longitude": 80.1491
+        },
+        {
+          "name": "Guindy",
+          "latitude": 13.0067,
+          "longitude": 80.2206
+        },
+        {
+          "name": "Saidapet",
+          "latitude": 13.0213,
+          "longitude": 80.2231
+        },
+        {
+          "name": "T. Nagar",
+          "latitude": 13.0418,
+          "longitude": 80.2341
+        }
+      ]
+    },
+    {
+      "name": "Route B",
+      "description": "Tambaram - Adyar via Velachery",
+      "stops": [
+        {
+          "name": "Tambaram",
+          "latitude": 12.9249,
+          "longitude": 80.1
+        },
+        {
+          "name": "Selaiyur",
+          "latitude": 12.9066,
+          "longitude": 80.143
+        },
+        {
+          "name": "Medavakkam",
+          "latitude": 12.9171,
+          "longitude": 80.1923
+        },
+        {
+          "name": "Velachery",
+          "latitude": 12.9815,
+          "longitude": 80.218
+        },
+        {
+          "name": "Adyar",
+          "latitude": 13.0012,
+          "longitude": 80.2565
+        }
+      ]
+    }
+  ],
+  "vehicles": [
+    {
+      "code": "BUS-001",
+      "plate_number": "TN-01-AB-0001",
+      "route": "Route A"
+    },
+    {
+      "code": "BUS-002",
+      "plate_number": "TN-01-AB-0002",
+      "route": "Route B"
+    },
+    {
+      "code": "BUS-003",
+      "plate_number": "TN-01-AB-0003",
+      "route": "Route A"
+    }
+  ],
+  "users": [
+    {
+      "email": "alice@example.com",
+      "full_name": "Alice (User A)",
+      "password": "password123",
+      "route": "Route A",
+      "vehicle": "BUS-001"
+    },
+    {
+      "email": "bob@example.com",
+      "full_name": "Bob (User B)",
+      "password": "password123",
+      "route": "Route B",
+      "vehicle": "BUS-002"
+    },
+    {
+      "email": "carol@example.com",
+      "full_name": "Carol (User C)",
+      "password": "password123",
+      "route": "Route A",
+      "vehicle": "BUS-003"
+    },
+    {
+      "email": "admin@example.com",
+      "full_name": "Administrator",
+      "password": "admin12345",
+      "is_admin": true
+    }
+  ]
+}
